@@ -2,7 +2,6 @@ package core
 
 import (
 	"reflect"
-	"strings"
 )
 
 type DynamicValue struct {
@@ -31,7 +30,7 @@ func (v *DynamicValue) ResolveWithNil(data map[string]interface{}) interface{} {
 func (v *DynamicValue) Resolve(data map[string]interface{}) interface{} {
 	d := v.resolve(data)
 	if d == nil {
-		return []byte("{{" + strings.Join(v.Fields, ".") + "}}")
+		return []byte("")
 	}
 	return ResolveFinal(d)
 }
