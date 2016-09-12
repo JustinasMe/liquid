@@ -21,9 +21,10 @@ type IncludeHandler func(name string, writer io.Writer, data map[string]interfac
 
 // Configuration used for generating a template
 type Configuration struct {
-	cache              Cache
-	includeHandler     IncludeHandler
-	preserveWhitespace bool
+	cache                 Cache
+	includeHandler        IncludeHandler
+	preserveWhitespace    bool
+	preserveEmptyLiterals bool
 }
 
 // Set the caching engine, or nil for no caching
@@ -57,4 +58,15 @@ func (c *Configuration) PreserveWhitespace() *Configuration {
 // Gets the preserves whitespace value
 func (c *Configuration) GetPreserveWhitespace() bool {
 	return c.preserveWhitespace
+}
+
+// Preserves whitespace
+func (c *Configuration) PreserveEmptyLiterals() *Configuration {
+	c.preserveEmptyLiterals = true
+	return c
+}
+
+// Gets the preserves whitespace value
+func (c *Configuration) GetPreserveEmptyLiterals() bool {
+	return c.preserveEmptyLiterals
 }
